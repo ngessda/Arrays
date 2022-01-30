@@ -10,7 +10,7 @@ namespace Arrayz.App
     {
         static void Main(string[] args)
         {
-            Seventeen(10,2);
+            ProEleven(10);
             Console.ReadKey();
         }
         static void One(int N)
@@ -366,38 +366,267 @@ namespace Arrayz.App
                 Console.WriteLine();
             }
         }
-        /*  bool flag = true;
-            int indexOfX = 0;
-            int m = 0;
-            int arrayLength = 0;
-            while (flag)
+        static void ProOne(int N)
+        {
+            var A = new int[N];
+            Random random = new Random();
+            for (int i = 0; i < N; i++)
             {
-                int[] arr;
-                m = indexOfX;
-                indexOfX = Array.IndexOf(A, x);
-                if(indexOfX == -1)
+                A[i] = random.Next(-N, N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            var B = new int[N - 1];
+            for(int i = 0; i < N - 1; i++)
+            {
+                B[i] = A[i + 1];
+                Console.WriteLine(B[i]);
+            }
+        }
+        static void ProTwo(int N)
+        {
+            var A = new int[N];
+            Random random = new Random();
+            for (int i = 0; i < N; i++)
+            {
+                A[i] = random.Next(-N, N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            var B = new int[N - 3];
+            for (int i = 0; i < N - 3; i++)
+            {
+                B[i] = A[i + 3];
+                Console.WriteLine(B[i]);
+            }
+        }
+        static void ProThree(int N, int n)
+        {
+            if(N < n)
+            {
+                Console.WriteLine("Ошибка!");
+                return;
+            }
+            var A = new int[N];
+            Random random = new Random();
+            for (int i = 0; i < N; i++)
+            {
+                A[i] = random.Next(-N, N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            var B = new int[N - n];
+            for (int i = 0; i < N - n; i++)
+            {
+                B[i] = A[i + n];
+                Console.WriteLine(B[i]);
+            }
+        }
+        static void ProFour(int N)
+        {
+            Random random = new Random();
+            var A = new int[N];
+            for(int i = 0;i < A.Length; i++)
+            {
+                A[i] = random.Next(-N, N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            var B = new int[N - 2];
+            for (int i = 0; i < B.Length; i++)
+            {
+                B[i] = A[i + 1];
+                Console.WriteLine(B[i]);
+            }
+        }
+        static void ProFive(int N)
+        {
+            if(N % 2 != 0)
+            {
+                Console.WriteLine("Ошибка!");
+                return;
+            }
+            Random random = new Random();
+            var A = new int[N];
+            for (int i = 0; i < A.Length; i++)
+            {
+                A[i] = random.Next(-N, N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            var B = new int[N];
+            int j = 0;
+            for (int i = N / 2; i < N; i++) 
+            {
+                B[j] = A[i];
+                j++;
+            }
+            for (int i = 0; i < N / 2; i++) 
+            {
+                B[j] = A[i];
+                j++;
+            }
+            for (int i = 0; i < N; i++)
+            {
+                Console.WriteLine(B[i]);
+            }
+        }
+        static void ProSix(int N)
+        {
+            Random random = new Random();
+            var A = new int[N];
+            for (int i = 0; i < A.Length; i++)
+            {
+                A[i] = random.Next(N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            var B = new int[N - 1];
+            int j = 0;
+            for (int i = 0; i < N; i++)
+            {
+                if (i == N / 2)
                 {
-                    flag = false;
-                    arrayLength = A.Length - m;
-                    arr = new int[arrayLength];
-                    for (int i = 0, j = m; i < arrayLength; i++, j++) 
-                    {
-                        arr[i] = A[j];
-                    }
-                    listOfArrays.Add(arr);
+                    continue;
                 }
                 else
                 {
-                    arrayLength = A.Length - ((A.Length - indexOfX) + m) + 1;
-                    arr = new int[arrayLength];
-                    for(int i = 0, j = m; i < arrayLength; i++, j++)
-                    {
-                        arr[i] = A[j];
-                    }
-                    listOfArrays.Add(arr);
-                    Array.Clear(A, m, indexOfX);
+                    B[j] = A[i];
+                    Console.WriteLine(B[j]);
+                    j++;
                 }
             }
-        */
+        }
+        static void ProSeven(int N, int index)
+        {
+            Random random = new Random();
+            var A = new int[N];
+            for (int i = 0; i < A.Length; i++)
+            {
+                A[i] = random.Next(N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            var B = new int[N - 1];
+            int j = 0;
+            for (int i = 0; i < N; i++)
+            {
+                if (i == index)
+                {
+                    continue;
+                }
+                else
+                {
+                    B[j] = A[i];
+                    Console.WriteLine(B[j]);
+                    j++;
+                }
+            }
+        }
+        static void ProEight(int N)
+        {
+            Random random = new Random();
+            var A = new int[N];
+            for (int i = 0; i < A.Length; i++)
+            {
+                A[i] = random.Next(N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            int index = Array.IndexOf(A, A.Max());
+            var B = new int[N - 1];
+            int j = 0;
+            for (int i = 0; i < N; i++)
+            {
+                if (i == index)
+                {
+                    continue;
+                }
+                else
+                {
+                    B[j] = A[i];
+                    Console.WriteLine(B[j]);
+                    j++;
+                }
+            }
+        }
+        static void ProNine(int N)
+        {
+            Random random = new Random();
+            var A = new int[N];
+            for (int i = 0; i < A.Length; i++)
+            {
+                A[i] = random.Next(N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            int index = Array.IndexOf(A, A.Min());
+            var B = new int[N - 1];
+            int j = 0;
+            for (int i = 0; i < N; i++)
+            {
+                if (i == index)
+                {
+                    continue;
+                }
+                else
+                {
+                    B[j] = A[i];
+                    Console.WriteLine(B[j]);
+                    j++;
+                }
+            }
+        }
+        static void ProTen(int N)
+        {
+            Random random = new Random();
+            var A = new int[N];
+            for (int i = 0; i < A.Length; i++)
+            {
+                A[i] = random.Next(N);
+                Console.WriteLine(A[i]);
+            }
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            int counter = 0;
+            for (int i = 0; i < A.Length; i++)
+            {
+                if (i + 1 < N && A[i] > A[i + 1])
+                {
+                    counter = A[i];
+                    A[i] = A[i + 1];
+                    A[i + 1] = counter;
+                }
+                Console.Write(A[i] + " ");
+            }
+        }
+        static void ProEleven(int N)
+        {
+            Random random = new Random();
+            var A = new int[N];
+            for (int i = 0; i < A.Length; i++)
+            {
+                A[i] = random.Next(N);
+                Console.Write(A[i] + " ");
+            }
+            Console.WriteLine("\n");
+            Console.WriteLine("-------------------------------------------------------------------------------------------------------");
+            var counter = 0;
+            for(int i = 0; i < N - 1; i++)
+            {
+                for(int j = i + 1; j < N; j++)
+                {
+                    if(A[i] > A[j])
+                    {
+                        counter = A[i];
+                        A[i] = A[j];
+                        A[j] = counter;
+                    }
+                }
+            }
+            for (int i = 0; i < N; i++)
+            {
+                Console.Write(A[i] + " ");
+            }
+        }
     }
 }
