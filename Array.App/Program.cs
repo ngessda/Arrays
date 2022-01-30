@@ -292,21 +292,88 @@ namespace Arrayz.App
         {
             Random random = new Random();
             int[] A = new int[N];
-            List<Array> listOfArrays = new List<Array>();
+            List<int[]> listOfArrays = new List<int[]>();
             for(int i = 0; i < N; i++)
             {
-                A[i] = random.Next(-N, N);
-                Console.WriteLine(A[i]);
+                A[i] = random.Next(1, 5);
+                Console.Write(A[i] + " ");
             }
+            Console.WriteLine();
             Console.WriteLine("-------------------------------------------------------------------------------------------------------");
-            bool flag = true;
+
+            int index = -1;
+            int counter = 0;
+
+            for (int i = 0; i < A.Length; i++)
+            {
+                int val = A[i];
+                if(val != x)
+                {
+                    counter++;
+                    if(i == A.Length - 1)
+                    {
+                        if(index < 0)
+                        {
+                            index = 0;
+                        }
+                        var a = new int[counter];
+                        int k = index;
+                        for (int j = 0; j < a.Length; j++)
+                        {
+                            a[j] = A[k];
+                            k++;
+                        }
+                        listOfArrays.Add(a);
+                    }
+                }
+                else
+                {
+                    if(counter == 0)
+                    {
+                        if(index < 0)
+                        {
+                            index += 2;
+                        }
+                        else
+                        {
+                            index++;
+                        }
+                        continue;
+                    }
+                    if(index < 0)
+                    {
+                        index = i - counter;
+                    }
+                    var a = new int[counter];
+                    int t = index;
+                    for (int j = 0; j < a.Length; j++)
+                    {
+                        a[j] = A[t];
+                        t++;
+                    }
+                    listOfArrays.Add(a);
+                    counter = 0;
+                    index = i + 1;
+                }
+            }
+
+            foreach(var arr in listOfArrays)
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    Console.Write(arr[i] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        /*  bool flag = true;
             int indexOfX = 0;
             int m = 0;
             int arrayLength = 0;
             while (flag)
             {
                 int[] arr;
-                m = indexOfX + 1;
+                m = indexOfX;
                 indexOfX = Array.IndexOf(A, x);
                 if(indexOfX == -1)
                 {
@@ -321,20 +388,16 @@ namespace Arrayz.App
                 }
                 else
                 {
-                    arrayLength = A.Length - ((A.Length - indexOfX) + m);
+                    arrayLength = A.Length - ((A.Length - indexOfX) + m) + 1;
                     arr = new int[arrayLength];
                     for(int i = 0, j = m; i < arrayLength; i++, j++)
                     {
                         arr[i] = A[j];
                     }
                     listOfArrays.Add(arr);
-                    Array.Clear(A, m, indexOfX + 1);
+                    Array.Clear(A, m, indexOfX);
                 }
             }
-            for(int i = 0; i < listOfArrays.Count; i++)
-            {
-                    Console.WriteLine(listOfArrays[i]);
-            }
-        }
+        */
     }
 }
