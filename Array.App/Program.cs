@@ -176,19 +176,31 @@ namespace Arrayz.App
             Random random = new Random();
             double h = N / 2;
             double[] A = new double[N];
-            double[] R = new double[N];
             for (int i = 0; i < N; i++)
             {
                 A[i] = random.Next(-100, 100);
                 Console.WriteLine(A[i]);
             }
-            Console.WriteLine("Массив R: ");
+            int count = 0;
             for (int i = 0; i < N; i++)
             {
                 if (A[i] % h == 0)
                 {
-                    R[i] = A[i];
+                    count++;
                 }
+            }
+            Console.WriteLine("Массив R: ");
+            double[] R = new double[count];
+            for (int i = 0, j = 0; i < N; i++)
+            {
+                if (A[i] % h == 0)
+                {
+                    R[j] = A[i];
+                    j++;
+                }
+            }
+            for (int i = 0; i < R.Length; i++)
+            {
                 Console.WriteLine(R[i]);
             }
         }
