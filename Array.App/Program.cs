@@ -10,7 +10,7 @@ namespace Arrayz.App
     {
         static void Main(string[] args)
         {
-            ProEleven(10);
+            Eleven(10);
             Console.ReadKey();
         }
         static void One(int N)
@@ -180,11 +180,15 @@ namespace Arrayz.App
             for (int i = 0; i < N; i++)
             {
                 A[i] = random.Next(-100, 100);
+                Console.WriteLine(A[i]);
             }
             Console.WriteLine("Массив R: ");
             for (int i = 0; i < N; i++)
             {
-                R[i] = A[i] / h;
+                if (A[i] % h == 0)
+                {
+                    R[i] = A[i];
+                }
                 Console.WriteLine(R[i]);
             }
         }
@@ -200,7 +204,7 @@ namespace Arrayz.App
                 Console.WriteLine(arr[i]);
             }
             Console.WriteLine("-------------------------------------------------------------------------------------------------------");
-            for(int i = 0; i < N - 1; i += 2)
+            for(int i = 0; i < N - 1; i++)
             {
                 slave = arr[i];
                 arr[i] = arr[i + 1];
@@ -232,22 +236,35 @@ namespace Arrayz.App
         {
             Random random = new Random();
             int[] A = new int[N];
+            int[] I = new int[N];
             for (int i = 0; i < N; i++)
             {
                 A[i] = random.Next(-100, 100);
                 Console.WriteLine(A[i]);
             }
             Console.WriteLine("-------------------------------------------------------------------------------------------------------");
-            Array.Reverse(A);
+            for(int i = N - 1, j = 0; j < N && i >= 0; i--, j++)
+            {
+                I[j] = A[i];
+            }
             for (int i = 0; i < N; i++)
             {
-                Console.WriteLine(A[i]);
+                Console.WriteLine(I[i]);
             }
         }
         static void Fifteen()
         {
             int[] A = new int[] { 1, 2, 3, 6, 3, 4 };
-            int IndexOfX = Array.IndexOf(A, 6);
+            int IndexOfX = 0;
+            const int x = 6;
+            for(int i = 0; i < A.Length; i++)
+            {
+                if(A[i] == x)
+                {
+                    IndexOfX = i;
+                    break;
+                }
+            }
             int[] A_One = new int[IndexOfX];
             for(int i = 0; i < IndexOfX; i++)
             {
@@ -265,8 +282,25 @@ namespace Arrayz.App
         static void Sixteen()
         {
             int[] A = new int[] { 1, 3, 2, 4, 5, 6, 2, 7 };
-            int IndexOfFirstNumber = Array.IndexOf(A, 2) + 1;
-            int IndexOfSecondNumber = Array.LastIndexOf(A, 2);
+            int IndexOfFirstNumber = 0;
+            const int x = 2;
+            for (int i = 0; i < A.Length; i++)
+            {
+                if (A[i] == x)
+                {
+                    IndexOfFirstNumber = i;
+                    break;
+                }
+            }
+            int IndexOfSecondNumber = 0;
+            for(int i = A.Length - 1; i >= 0; i--)
+            {
+                if (A[i] == x)
+                {
+                    IndexOfSecondNumber = i;
+                    break;
+                }
+            }
             int[] FirstA = new int[IndexOfFirstNumber];
             for(int i = 0; i < IndexOfFirstNumber; i++)
             {
@@ -275,7 +309,7 @@ namespace Arrayz.App
             }
             Console.WriteLine("-------------------------------------------------------------------------------------------------------");
             int[] SecondA = new int[A.Length - ((A.Length - IndexOfSecondNumber) + IndexOfFirstNumber)];
-            for(int i = 0, j = IndexOfFirstNumber; i < SecondA.Length; i++, j++)
+            for(int i = 0, j = IndexOfFirstNumber + 1; i < SecondA.Length - 1; i++, j++)
             {
                 SecondA[i] = A[j];
                 Console.WriteLine(SecondA[i]);
@@ -533,7 +567,29 @@ namespace Arrayz.App
                 Console.WriteLine(A[i]);
             }
             Console.WriteLine("-------------------------------------------------------------------------------------------------------");
-            int index = Array.IndexOf(A, A.Max());
+            int index = 0;
+            bool flag = true;
+            int count = 0;
+            for(int i = 0; i < N; i++)
+            {
+                if(flag == true)
+                {
+                    count = A[i];
+                    for(int k = 0; k < A.Length; k++)
+                    {
+                        if(count < A[k])
+                        {
+                            count = A[k];
+                        }
+                    }
+                    flag = false;
+                }
+                if (A[i] == count)
+                {
+                    index = i;
+                    break;
+                }
+            }
             var B = new int[N - 1];
             int j = 0;
             for (int i = 0; i < N; i++)
@@ -560,7 +616,29 @@ namespace Arrayz.App
                 Console.WriteLine(A[i]);
             }
             Console.WriteLine("-------------------------------------------------------------------------------------------------------");
-            int index = Array.IndexOf(A, A.Min());
+            int index = 0;
+            bool flag = true;
+            int count = 0;
+            for (int i = 0; i < N; i++)
+            {
+                if (flag == true)
+                {
+                    count = A[i];
+                    for (int k = 0; k < A.Length; k++)
+                    {
+                        if (count > A[k])
+                        {
+                            count = A[k];
+                        }
+                    }
+                    flag = false;
+                }
+                if (A[i] == count)
+                {
+                    index = i;
+                    break;
+                }
+            }
             var B = new int[N - 1];
             int j = 0;
             for (int i = 0; i < N; i++)
